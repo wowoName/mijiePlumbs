@@ -1,0 +1,182 @@
+{
+    "nodes": [{
+            "id": "0a16c2a2-2d94-4826-8010-5e6d1f6f61e2",
+            "nodeStyle": {
+                "top": "31px",
+                "left": "75px"
+            },
+            "text": "\n    \n    服务器\n\n",
+            "type": "server",
+            "data": {}
+        },
+        {
+            "id": "a9426f73-15d4-4677-87a7-aad164911ea4",
+            "nodeStyle": {
+                "top": "226px",
+                "left": "68px"
+            },
+            "text": "\n    \n    服务器\n\n",
+            "type": "server",
+            "data": {}
+        },
+        {
+            "id": "f6af39c1-b5fc-4ff1-98bf-d44eb5c0d48f",
+            "nodeStyle": {
+                "top": "408px",
+                "left": "62px"
+            },
+            "text": "\n    \n    服务器\n\n",
+            "type": "server",
+            "data": {}
+        },
+        {
+            "id": "0dcd3188-5c7a-4a83-8147-9cd53b45ab32",
+            "nodeStyle": {
+                "top": "226px",
+                "left": "299px"
+            },
+            "text": "\n    \n    交换机\n\n",
+            "type": "switches",
+            "data": {}
+        },
+        {
+            "id": "c5eeca09-6206-41dc-972a-b501432c3faa",
+            "nodeStyle": {
+                "top": "62px",
+                "left": "498px"
+            },
+            "text": "\n    \n    电脑\n\n",
+            "type": "computer",
+            "data": {}
+        },
+        {
+            "id": "e4a7e241-b5ef-437e-bc88-9816949daf49",
+            "nodeStyle": {
+                "top": "240px",
+                "left": "511px"
+            },
+            "text": "\n    \n    电脑\n\n",
+            "type": "computer",
+            "data": {}
+        },
+        {
+            "id": "00d367b1-a984-4b4b-a0cf-7550182d3fcf",
+            "nodeStyle": {
+                "top": "420px",
+                "left": "506px"
+            },
+            "text": "\n    \n    电脑\n\n",
+            "type": "computer",
+            "data": {}
+        }
+    ],
+    "connections": [{
+            "sourceId": "0a16c2a2-2d94-4826-8010-5e6d1f6f61e2",
+            "targetId": "0dcd3188-5c7a-4a83-8147-9cd53b45ab32",
+            "uuids": [
+                null,
+                null
+            ],
+            "anchors": [
+                [
+                    0.5,
+                    1
+                ],
+                [
+                    0.5,
+                    1
+                ]
+            ]
+        },
+        {
+            "sourceId": "a9426f73-15d4-4677-87a7-aad164911ea4",
+            "targetId": "0dcd3188-5c7a-4a83-8147-9cd53b45ab32",
+            "uuids": [
+                null,
+                null
+            ],
+            "anchors": [
+                [
+                    0.5,
+                    1
+                ],
+                [
+                    0.5,
+                    1
+                ]
+            ]
+        },
+        {
+            "sourceId": "f6af39c1-b5fc-4ff1-98bf-d44eb5c0d48f",
+            "targetId": "0dcd3188-5c7a-4a83-8147-9cd53b45ab32",
+            "uuids": [
+                null,
+                null
+            ],
+            "anchors": [
+                [
+                    0.5,
+                    1
+                ],
+                [
+                    0.5,
+                    1
+                ]
+            ]
+        },
+        {
+            "sourceId": "0dcd3188-5c7a-4a83-8147-9cd53b45ab32",
+            "targetId": "c5eeca09-6206-41dc-972a-b501432c3faa",
+            "uuids": [
+                null,
+                null
+            ],
+            "anchors": [
+                [
+                    0.5,
+                    1
+                ],
+                [
+                    0.5,
+                    1
+                ]
+            ]
+        },
+        {
+            "sourceId": "0dcd3188-5c7a-4a83-8147-9cd53b45ab32",
+            "targetId": "00d367b1-a984-4b4b-a0cf-7550182d3fcf",
+            "uuids": [
+                null,
+                null
+            ],
+            "anchors": [
+                [
+                    0.5,
+                    1
+                ],
+                [
+                    0.5,
+                    1
+                ]
+            ]
+        },
+        {
+            "sourceId": "0dcd3188-5c7a-4a83-8147-9cd53b45ab32",
+            "targetId": "0a16c2a2-2d94-4826-8010-5e6d1f6f61e2",
+            "uuids": [
+                "0dcd3188-5c7a-4a83-8147-9cd53b45ab32RightMiddle",
+                "0a16c2a2-2d94-4826-8010-5e6d1f6f61e2TopCenter"
+            ],
+            "anchors": [
+                [
+                    1,
+                    0.5
+                ],
+                [
+                    0.5,
+                    0
+                ]
+            ]
+        }
+    ]
+}
