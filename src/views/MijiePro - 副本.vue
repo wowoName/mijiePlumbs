@@ -16,8 +16,9 @@
         <el-main>
             <div class="toolCon">
                 <div class="save" title="保存" @click="saveFlowchart"></div>
-                <div class="save" title="回显" @click="handleClickTemp('init',1)"></div>
+                <div class="save" title="保存" @click="handleClickTemp('init',1)"></div>
                 <div class="clear" title="清空" @click="clearFlowchart"></div>
+                <div @click="addGroup">gg</div>
             </div>
             <div class="workplace" id="workplace">
                 <template v-for="(item, idx) in chartData.nodes">
@@ -25,6 +26,7 @@
                     <mijie-node v-else v-bind="item" :key="idx"></mijie-node>
                 </template>
             </div>
+
         </el-main>
         <el-aside width="200px">
             <div class="box-card">
@@ -44,8 +46,8 @@
                     <el-input v-model="form.url" placeholder="请输入服务地址"></el-input>
                 </el-form-item>
 
-                <el-form-item label="appID" prop="app">
-                    <el-input v-model="form.app" placeholder="请输入appID名"></el-input>
+                <el-form-item label="server" prop="app">
+                    <el-input v-model="form.app" placeholder="请输入server名"></el-input>
                 </el-form-item>
 
                 <el-form-item label="实例ID" prop="instancId">
@@ -55,19 +57,9 @@
                     <el-input v-model="form.hostName" placeholder="主机名"></el-input>
                 </el-form-item>
 
-                <!-- <el-form-item label="状态" prop="status">
+                <el-form-item label="状态" prop="status">
                     <el-switch v-model="form.status">
                     </el-switch>
-                </el-form-item> -->
-
-                <el-form-item label="状态" prop="status">
-                    <el-select v-model="form.status" placeholder="请选择">
-                        <el-option label="UP" value="UP"></el-option>
-                        <el-option label="DOWN" value="DOWN"></el-option>
-                        <el-option label="STARTING" value="STARTING"></el-option>
-                        <el-option label="OUT_OF_SERVICE" value="OUT_OF_SERVICE"></el-option>
-                        <el-option label="UNKNOWN" value="UNKNOWN"></el-option>
-                    </el-select>
                 </el-form-item>
                 <!-- <el-form-item>
                     <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -94,6 +86,7 @@ export default {
     },
     data() {
         return {
+
             showInfos: false,//设置属性
             editId: "",//修改节点的id
             form: {
@@ -101,7 +94,7 @@ export default {
                 app: "",
                 instancId: "",
                 hostName: "",
-                status: ""
+                status: true
             }, rules: {
                 url: [
                     { required: true, message: '请输入服务地址', trigger: 'blur' },
@@ -118,7 +111,9 @@ export default {
                 ]
 
             },
-            chartData: [],
+            chartData: {
+                nodes: []
+            },
             templateList: [
                 {
                     name: "测试模板",
@@ -138,10 +133,10 @@ export default {
                     name: "交换机",
                     type: "switches"
                 },
-                // {
-                //     name: "组",
-                //     type: "groups"
-                // }
+                {
+                    name: "组",
+                    type: "groups"
+                }
             ],
             jsp: null,
             jsplulmb: null,
@@ -237,14 +232,13 @@ export default {
             commonEndpoint: {
                 endpoint: "Dot",
                 paintStyle: { fill: "#7AB02C", radius: 7 },
-                HoverPaintStyle: { stroke: "#1e8151", strokeWidth: 4, outlineStroke: 'red' },
                 isSource: true,
                 //scope: "blue",
                 connector: [
                     "Flowchart"
                 ],
                 connectorStyle: {
-                    strokeWidth: 2,
+                    strokeWidth: 1,
                     stroke: "#61B7CF",
                     joinstyle: "round",
                     outlineStroke: "white",
@@ -257,7 +251,9 @@ export default {
                     );
                 },
                 dragOptions: { cursor: "pointer", zIndex: 2000 }
-            }
+            },
+            a: [{ name: "1", age: 10 }, { name: "2" }, { name: "3" }],
+            b: [[{ name: "a" }, { "name": "b" }], [{ "name": "c" }, { "name": "d" }]],
         };
     },
     mounted() {
@@ -273,9 +269,8 @@ export default {
                 ],
                 connector: that.sourceEndpoint.connector,
                 // "dashstyle": "2 4"
-                paintStyle: { strokeWidth: 2, stroke: "#32CD32" },//实线 p小写
+                paintStyle: { strokeWidth: 1, stroke: "#32CD32" },//实线 p小写
                 // overlays
-                HoverPaintStyle: { stroke: "#1e8151", strokeWidth: 4 },
                 ConnectionOverlays: [
                     [
                         "Arrow", //Arrow PlainArrow
@@ -318,9 +313,9 @@ export default {
             };
             // 暂停渲染，执行以下操作
             instance.batch(function () {
-                // 连线
+                // listen for new connections;
                 instance.bind("connection", function (connInfo, originalEvent) {
-                    // init(connInfo.connection);
+                    init(connInfo.connection);
                 });
                 /* // make all the window divs draggable
                 instance.draggable($(".workplace .chart-item"), {
@@ -369,6 +364,7 @@ export default {
                         item = {
                             id,
                             type: helper.attr("data-key"),
+                            text: helper.html(),
                             nodeStyle: {
                                 top: ui.position.top + "px",
                                 left: ui.position.left - 200 + "px"
@@ -377,12 +373,14 @@ export default {
                         };
 
                     //将数据存储
-                    that.chartData.push(item);
+                    that.chartData.nodes.push(item);
                     //添加修改组件名称
                     that.$nextTick(() => {
+
                         //添加组
                         if (item.type === "groups") {
-                            that.initGroup(id);
+
+                            that.initGrop(id);
                             jsPlumb.fire("jsPlumbDemoGroupAdded", instance);
                         } else {//添加其他元素
                             /**
@@ -457,8 +455,6 @@ export default {
                 connections: [],
                 props: {}
             };
-            let clientSource = ["BottomCenter", "TopCenter"],
-                clientTarget = ["LeftMiddle", "RightMiddle"];
             //清空
             this.jsp.empty("workplace");
             if (key) {
@@ -471,85 +467,7 @@ export default {
                 //加载对应的模板
                 let url = "/static/json/" + key + ".json";
                 this.$axios.get(url).then(resp => {
-                    let data = resp.data.data,
-                        nodes = [],
-                        amount = 0,
-                        connections = [];//连接点
-                    //这是所有的节点
-                    data.forEach((v, i) => {
-                        //获取组元素
-                        let groups = {
-                            "id": "groups_" + amount,
-                            "nodeStyle": {
-                            },
-                            "type": "groups",
-                            "data": {},
-                            "name": v.region
-                        }
-                        amount++;
-                        let nodesChildren = [];
-                        //获取组内的元素
-                        v.zone.forEach(item => {
-
-                            //获取server
-                            item.servers.forEach(itemSer => {
-                                let curId = "computer_" + amount,
-                                    node = Object.assign(itemSer, {
-                                        "id": curId,
-                                        "nodeStyle": {
-                                            "width": "90px",
-                                            "height": "90px"
-                                        },
-                                        "type": itemSer.app == "SERVER" ? "server" : "computer",
-                                        "data": {
-                                            url: itemSer.url,
-                                            app: itemSer.app,
-                                            instancId: itemSer.instanceId,
-                                            hostName: itemSer.hostName,
-                                            status: itemSer.status
-                                        }
-                                    });
-                                nodesChildren.push(node);
-                                amount++;
-                                //获取连接点
-                                itemSer.client.forEach(itemCli => {
-                                    let cliId = "server_" + amount,
-                                        node = Object.assign(itemCli, {
-                                            "id": cliId,
-                                            "nodeStyle": {
-                                                "width": "90px",
-                                                "height": "90px"
-                                            },
-                                            "type": itemCli.app == "SERVER" ? "server" : "computer",
-                                            "data": {
-                                                url: itemCli.url,
-                                                app: itemCli.app,
-                                                instancId: itemCli.instanceId,
-                                                hostName: itemCli.hostName,
-                                                status: itemCli.status
-                                            }
-                                        });
-                                    nodesChildren.push(node);
-                                    //获取连接点
-                                    connections.push({
-                                        "sourceId": curId,
-                                        "targetId": cliId,
-                                        "uuids": [
-                                            curId + clientSource[Math.floor(Math.random() * (2 - 0) + 0)],
-                                            cliId + clientTarget[Math.floor(Math.random() * (2 - 0) + 0)]
-                                        ],
-                                    });
-                                    amount++;
-                                });
-                            });
-                        });
-                        //存入元素
-                        groups.children = nodesChildren;
-                        nodes.push(groups);
-                    });
-                    //修改坐标点
-                    this.chartData.nodes = this.modifyPo(nodes);
-                    this.chartData.connections = connections;
+                    this.chartData = resp.data.data;
                     this.$nextTick(() => {
                         this.chartData.nodes.forEach(item => {
                             //渲染节点
@@ -558,29 +476,16 @@ export default {
                                 //添加连接点
                                 this.addEndpoints(item.id);
                             } else {
-                                this.initGroup(item.id);
+                                this.initGrop(item.id);
                                 //渲染组的子元素
                                 if (item.hasOwnProperty("children")) {
                                     item.children.forEach(v => {
                                         this.initNode(v.id);
                                         this.addEndpoints(v.id);
-                                        //添加到组
-                                        //this.addToGroup(item.id.toString(), v.id);
                                     })
                                 }
                             }
                         });
-                        //将元素添加到组（避免初次渲染完毕 拖动元素拖动到组外）
-                        this.$nextTick(() => {
-                            this.chartData.nodes.forEach(item => {
-                                //渲染组的子元素
-                                if (item.hasOwnProperty("children")) {
-                                    item.children.forEach(v => {
-                                        this.addToGroup(item.id.toString(), v.id);
-                                    })
-                                }
-                            });
-                        })
                         //连接元素
                         this.chartData.connections.forEach(item => {
                             this.jsp.connect({
@@ -590,79 +495,22 @@ export default {
                                 uuids: item.uuids// 添加连接处使用
                             });
                         });
-                    });
 
+
+                    });
                 }).catch(err => {
                     console.log(err);
                 });
             }
         },
-        //添加到组
-        addToGroup(groupID, id) {
-            this.jsp.addToGroup(groupID, document.getElementById(id));
-        },
-        /** 
-         * 修改组内元素的坐标避免重叠
-        */
-        modifyPo(nodes) {
-            nodes.forEach(item => {
-                //修改group的位置
-                let level = Math.ceil(item.children.length / 3),//一行三个可以排几列
-                    _height = level * 90 + (level - 1) * 100;//高度为每个元素的高90 +  50间距
-                item.nodeStyle = {
-                    "top": "10px",
-                    "left": "10px",
-                    "width": item.children.length >= 3 ? "500px" : (item.children.length * 90 + 100 + level * 100) + "px",
-                    "height": level > 1 ? (level * 90 + 100 + (level - 1) * 100) + "px" : "190px"//高度+300 确保连线在组内
-                };
-                //组内的元素一行放置三个 每一个间隔为50 + 元素本身高度90
-                item.children.forEach((v, i) => {
-                    let index = i + 1;
-                    let _top = (Math.ceil(index / 3) - 1) * 190,
-                        _left = index % 3 === 0 ? 330 : (index % 3 - 1) * 140 + 50;
-
-                    v.nodeStyle = {
-                        "top": _top + 50 + "px",//top+50 确保连线在组内
-                        "left": _left + "px",//left+50 确保连线在组内
-                        "width": "90px",
-                        "height": "90px"
-                    }
-                });
-            });
-            this.modifyGroupPo(nodes);
-            return nodes;
-        },
-        //修改组的位置
-        modifyGroupPo(nodes) {
-            nodes.forEach((item, i) => {
-                //修改group的位置
-                let index = i - 2,
-                    leftIndex = i % 3,
-                    _top = 50,
-                    _left = 10;
-                if (i > 0) {
-                    let indexLeft = nodes[i - 1].nodeStyle.width.indexOf("p"),
-                        hassetTop = (Math.ceil(index / 2) - 1);
-                    //当时第二排的时候需要设置高度
-                    if (i > 1) {
-                        let indexTop = nodes[i - 2].nodeStyle.top.indexOf("p"),
-                            indexH = nodes[i - 2].nodeStyle.height.indexOf("p");
-                        _top = Number(nodes[i - 2].nodeStyle.top.substring(0, indexTop)) + 100;
-                        _top += Number(nodes[i - 2].nodeStyle.height.substring(0, indexH));
-                    }
-                    if (i % 2 != 0)
-                        _left = Number(nodes[i - 1].nodeStyle.width.substring(0, indexLeft)) + 100;
-                }
-                item.nodeStyle.top = _top + "px";
-                item.nodeStyle.left = _left + "px";
-
-            });
-            return nodes;
+        addGroup() {
+            // this.zoom(0.5);
+            this.jsp.addToGroup("1558425060716", 1558425057005)
         },
         /** 
          * 整理数据格式  拆分成模块以及连线
         */
-        renderNodes() {
+        sortingData(data) {
 
         },
         zoom(scale) {
@@ -793,7 +641,11 @@ export default {
         //清空数据
         clearFlowchart() {
             this.jsp.empty("workplace");
-            this.chartData = [];
+            this.chartData = {
+                nodes: [],
+                connections: [],
+                props: {}
+            };
         },
         // 初始化node节点
         initNode(el) {
@@ -823,7 +675,7 @@ export default {
             this.jsp.fire("jsPlumbDemoNodeAdded", el);
         },
         //初始化组
-        initGroup(id) {
+        initGrop(id) {
             this.jsp.addGroup({
                 el: document.getElementById(id), // 必须为 dom对象
                 id: id,
@@ -886,7 +738,7 @@ export default {
             return styles;
         },
         //添加连接节点
-        addEndpoints(toId, sourceAnchors = ["BottomCenter", "TopCenter"], targetAnchors = ["LeftMiddle", "RightMiddle"]) {
+        addEndpoints(toId, sourceAnchors = ["RightMiddle", "TopCenter"], targetAnchors = ["LeftMiddle", "BottomCenter"]) {
             const that = this;
             //绘制连线的起点
             for (let i = 0; i < sourceAnchors.length; i++) {
@@ -940,7 +792,6 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: auto;
 }
 .toolCon {
     position: absolute;

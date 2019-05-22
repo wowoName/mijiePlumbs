@@ -1,7 +1,6 @@
 <template>
     <div id="header">
-
-        <el-menu :default-active="$route.path" :router="true" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu :default-active="$route.path" :router="true" class="el-menu-demo" mode="vertical" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
             <el-menu-item index="/">首页</el-menu-item>
             <el-submenu index="2">
                 <template slot="title">官方demo</template>
@@ -24,7 +23,8 @@
             </el-submenu>
             <el-menu-item index="/drag-to-workplace">drag to workplace</el-menu-item>
             <el-menu-item index="/demo-chart">demo-chart</el-menu-item>
-            <el-menu-item index="/mijie-pro">米捷科技</el-menu-item>
+            <el-menu-item index="/server-tbl">我的模板</el-menu-item>
+            <el-menu-item index="/mijie-pro">设计</el-menu-item>
         </el-menu>
     </div>
 </template>

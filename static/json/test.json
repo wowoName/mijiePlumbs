@@ -1,242 +1,56 @@
 {
     "nodes": [{
-            "id": "fd0d8a4b-e658-4009-a4b3-15607a6c13d9",
+            "id": "1558486366606",
             "nodeStyle": {
-                "top": "63px",
-                "left": "583px"
+                "top": "79px",
+                "left": "420px",
+                "width": "90px",
+                "height": "90px"
             },
-            "text": "\n    \n    \n    \n    \n    \n    \n    \n    服务器\n\n\n\n\n\n\n\n",
-            "type": "server",
-            "data": {}
-        },
-        {
-            "id": "d904359c-da88-4202-8502-1d7e7d361b85",
-            "nodeStyle": {
-                "top": "63px",
-                "left": "101px"
-            },
-            "text": "\n    \n    \n    \n    \n    \n    \n    \n    服务器\n\n\n\n\n\n\n\n",
-            "type": "server",
-            "data": {}
-        },
-        {
-            "id": "d600c994-2ba6-4fa5-ba38-13f37dbf6a4f",
-            "nodeStyle": {
-                "top": "277px",
-                "left": "216px"
-            },
-            "text": "\n    \n    \n    \n    \n    22\n\n\n\n\n",
-            "type": "switches",
-            "data": {
-                "url": "122",
-                "app": "2",
-                "instancId": "3",
-                "hostName": "3",
-                "status": true
-            }
-        },
-        {
-            "id": "1efe1dd1-852b-43d8-ae08-067246855920",
-            "nodeStyle": {
-                "top": "474px",
-                "left": "330px"
-            },
-            "text": "\n    \n    \n    \n    \n    \n    \n    \n    电脑\n\n\n\n\n\n\n\n",
+            "text": "\n    172.20.10.6\n",
             "type": "computer",
             "data": {}
         },
         {
-            "id": "1340f8f2-465e-460d-ad7a-75b50da5d341",
+            "id": "1558486371173",
             "nodeStyle": {
-                "top": "389px",
-                "left": "531px"
+                "top": "257px",
+                "left": "133px",
+                "width": "333px",
+                "height": "250px"
             },
-            "text": "\n    \n    \n    \n    \n    \n    \n    \n    电脑\n\n\n\n\n\n\n\n",
-            "type": "computer",
-            "data": {}
-        },
-        {
-            "id": "d93f220c-e914-4113-887e-e3701d11344e",
-            "nodeStyle": {
-                "top": "278px",
-                "left": "676px"
-            },
-            "text": "\n    \n    \n    \n    \n    \n    \n    交换机\n\n\n\n\n\n\n",
-            "type": "switches",
-            "data": {}
-        },
-        {
-            "id": "315d0246-2328-4e69-91c1-0494f6190d6f",
-            "nodeStyle": {
-                "top": "277px",
-                "left": "45px"
-            },
-            "text": "\n    电脑\n",
-            "type": "computer",
-            "data": {}
+            "type": "groups",
+            "data": {},
+            "children": [{
+                "id": "1558486365767",
+                "nodeStyle": {
+                    "top": "91px",
+                    "left": "140px",
+                    "width": "90px",
+                    "height": "90px"
+                },
+                "text": "\n    172.20.10.6\n",
+                "type": "server",
+                "data": {}
+            }]
         }
     ],
     "connections": [{
-            "sourceId": "d600c994-2ba6-4fa5-ba38-13f37dbf6a4f",
-            "targetId": "1efe1dd1-852b-43d8-ae08-067246855920",
-            "uuids": [
-                "d600c994-2ba6-4fa5-ba38-13f37dbf6a4fBottomCenter",
-                "1efe1dd1-852b-43d8-ae08-067246855920LeftMiddle"
+        "sourceId": "1558486365767",
+        "targetId": "1558486366606",
+        "uuids": [
+            "1558486365767TopCenter",
+            "1558486366606LeftMiddle"
+        ],
+        "anchors": [
+            [
+                0.5,
+                0
             ],
-            "anchors": [
-                [
-                    0.5,
-                    1
-                ],
-                [
-                    0,
-                    0.5
-                ]
+            [
+                0,
+                0.5
             ]
-        },
-        {
-            "sourceId": "d600c994-2ba6-4fa5-ba38-13f37dbf6a4f",
-            "targetId": "1340f8f2-465e-460d-ad7a-75b50da5d341",
-            "uuids": [
-                "d600c994-2ba6-4fa5-ba38-13f37dbf6a4fRightMiddle",
-                "1340f8f2-465e-460d-ad7a-75b50da5d341TopCenter"
-            ],
-            "anchors": [
-                [
-                    1,
-                    0.5
-                ],
-                [
-                    0.5,
-                    0
-                ]
-            ]
-        },
-        {
-            "sourceId": "fd0d8a4b-e658-4009-a4b3-15607a6c13d9",
-            "targetId": "d93f220c-e914-4113-887e-e3701d11344e",
-            "uuids": [
-                "fd0d8a4b-e658-4009-a4b3-15607a6c13d9RightMiddle",
-                "d93f220c-e914-4113-887e-e3701d11344eTopCenter"
-            ],
-            "anchors": [
-                [
-                    1,
-                    0.5
-                ],
-                [
-                    0.5,
-                    0
-                ]
-            ]
-        },
-        {
-            "sourceId": "fd0d8a4b-e658-4009-a4b3-15607a6c13d9",
-            "targetId": "d904359c-da88-4202-8502-1d7e7d361b85",
-            "uuids": [
-                "fd0d8a4b-e658-4009-a4b3-15607a6c13d9TopCenter",
-                "d904359c-da88-4202-8502-1d7e7d361b85LeftMiddle"
-            ],
-            "anchors": [
-                [
-                    0.5,
-                    0
-                ],
-                [
-                    0,
-                    0.5
-                ]
-            ]
-        },
-        {
-            "sourceId": "1efe1dd1-852b-43d8-ae08-067246855920",
-            "targetId": "1340f8f2-465e-460d-ad7a-75b50da5d341",
-            "uuids": [
-                "1efe1dd1-852b-43d8-ae08-067246855920TopCenter",
-                "1340f8f2-465e-460d-ad7a-75b50da5d341LeftMiddle"
-            ],
-            "anchors": [
-                [
-                    0.5,
-                    0
-                ],
-                [
-                    0,
-                    0.5
-                ]
-            ]
-        },
-        {
-            "sourceId": "d904359c-da88-4202-8502-1d7e7d361b85",
-            "targetId": "fd0d8a4b-e658-4009-a4b3-15607a6c13d9",
-            "uuids": [
-                "d904359c-da88-4202-8502-1d7e7d361b85RightMiddle",
-                "fd0d8a4b-e658-4009-a4b3-15607a6c13d9LeftMiddle"
-            ],
-            "anchors": [
-                [
-                    1,
-                    0.5
-                ],
-                [
-                    0,
-                    0.5
-                ]
-            ]
-        },
-        {
-            "sourceId": "d600c994-2ba6-4fa5-ba38-13f37dbf6a4f",
-            "targetId": "fd0d8a4b-e658-4009-a4b3-15607a6c13d9",
-            "uuids": [
-                "d600c994-2ba6-4fa5-ba38-13f37dbf6a4fTopCenter",
-                "fd0d8a4b-e658-4009-a4b3-15607a6c13d9BottomCenter"
-            ],
-            "anchors": [
-                [
-                    0.5,
-                    0
-                ],
-                [
-                    0.5,
-                    1
-                ]
-            ]
-        },
-        {
-            "sourceId": "315d0246-2328-4e69-91c1-0494f6190d6f",
-            "targetId": "d600c994-2ba6-4fa5-ba38-13f37dbf6a4f",
-            "uuids": [
-                "315d0246-2328-4e69-91c1-0494f6190d6fRightMiddle",
-                "d600c994-2ba6-4fa5-ba38-13f37dbf6a4fLeftMiddle"
-            ],
-            "anchors": [
-                [
-                    1,
-                    0.5
-                ],
-                [
-                    0,
-                    0.5
-                ]
-            ]
-        },
-        {
-            "sourceId": "315d0246-2328-4e69-91c1-0494f6190d6f",
-            "targetId": "d904359c-da88-4202-8502-1d7e7d361b85",
-            "uuids": [
-                "315d0246-2328-4e69-91c1-0494f6190d6fTopCenter",
-                "d904359c-da88-4202-8502-1d7e7d361b85BottomCenter"
-            ],
-            "anchors": [
-                [
-                    0.5,
-                    0
-                ],
-                [
-                    0.5,
-                    1
-                ]
-            ]
-        }
-    ]
+        ]
+    }]
 }

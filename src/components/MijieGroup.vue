@@ -1,26 +1,40 @@
 <template>
-    <div class="workplace-group" :id="id" :group="'g_' + id">
-        <span class="title">{{text}}</span>
-        <div class="ep"></div>
-        <div class="content"></div>
-        <div class="resize top" @mousedown.stop="resize($event, 'top')"></div>
+    <div class="workplace-group " :id="id" :data-datas="JSON.stringify({})" :group="id" :style="nodeStyle" :data-type="type">
+        <span class="title">{{name}}</span>
+        <div class="ep">
+        </div>
+        <div class="content">
+            <!-- 渲染分区下的主机 -->
+            <template v-for="item in children">
+                <div v-if="item.type=='line'" :key="item.id">这是一条线</div>
+                <mijie-node v-else v-bind="item" :key="item.id"></mijie-node>
+            </template>
+        </div>
+        <!-- 去除缩放 -->
+        <!-- <div class="resize top" @mousedown.stop="resize($event, 'top')"></div>
         <div class="resize left" @mousedown.stop="resize($event, 'left')"></div>
         <div class="resize bottom" @mousedown.stop="resize($event, 'bottom')"></div>
-        <div class="resize right" @mousedown.stop="resize($event, 'right')"></div>
+        <div class="resize right" @mousedown.stop="resize($event, 'right')"></div> -->
+
     </div>
 </template>
 <script>
+import MijieNode from "@/components/MijieNode";
+import Lisu from "@/components/lisu";
 export default {
     name: "ChartNode",
+    components: {
+        MijieNode,
+        Lisu
+    },
     // props 验证
     props: {
         id: {
             type: String,
             required: true
         },
-        text: {
-            type: String,
-            required: true
+        name: {
+            type: String
         },
         type: {
             type: String,
@@ -31,6 +45,12 @@ export default {
         },
         nodeStyle: {
             type: Object
+        },
+        children: {
+            type: Array,
+            default: () => {
+                return []
+            }
         }
     },
     data() {
@@ -132,17 +152,20 @@ export default {
     border: 1px solid #ccc;
     position: absolute;
     padding-top: 24px;
-    min-width: 200px;
-    min-height: 250px;
+    // min-width: 200px;
+    // min-height: 250px;
+    border-radius: 6px;
+    margin-bottom: 20px;
 
     .title {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 24px;
-        line-height: 24px;
-        padding-left: 10px;
+        top: -30px;
+        left: 50%;
+        padding: 3px 20px;
+        border-radius: 3px;
+        transform: translate(-50%);
+        background-color: #43cd80;
+        color: #ffffff;
     }
     .ep {
         opacity: 0;

@@ -1,0 +1,345 @@
+{
+    "code": 200,
+    "message": "Success",
+    "data": [{
+        "zone": [{
+                "servers": [{
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [{
+                                "app": "CONSUMER",
+                                "hostName": "172.20.10.2",
+                                "instanceId": "172.20.10.6:consumer:8500",
+                                "flag": 0,
+                                "url": "172.20.10.6:8500",
+                                "status": "UP"
+                            },
+                            {
+                                "app": "SERVICE",
+                                "hostName": "172.20.10.3",
+                                "instanceId": "172.20.10.6:service:8201",
+                                "flag": 0,
+                                "url": "172.20.10.6:8201",
+                                "status": "UP"
+                            }
+                        ],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    }, {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    },
+                    {
+                        "app": "SERVER",
+                        "hostName": "172.20.10.1",
+                        "instanceId": "172.20.10.6:Server:8101",
+                        "client": [],
+                        "url": "172.20.10.6:8101",
+                        "status": "UP"
+                    }
+                ],
+                "zoneName": "zone-1"
+            },
+            {
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.4",
+                    "instanceId": "172.20.10.6:Server:8102",
+                    "client": [{
+                        "app": "SERVICE",
+                        "hostName": "172.20.10.5",
+                        "instanceId": "172.20.10.6:service:8202",
+                        "flag": 0,
+                        "url": "172.20.10.6:8202",
+                        "status": "UP"
+                    }],
+                    "url": "172.20.10.6:8102",
+                    "status": "UP"
+                }],
+                "zoneName": "zone-2"
+            }
+        ],
+        "region": "北京"
+    }, {
+        "zone": [{
+            "servers": [{
+                "app": "SERVER",
+                "hostName": "172.20.10.1",
+                "instanceId": "172.20.10.6:Server:8101",
+                "client": [{
+                    "app": "CONSUMER",
+                    "hostName": "172.20.10.2",
+                    "instanceId": "172.20.10.6:consumer:8500",
+                    "flag": 0,
+                    "url": "172.20.10.6:8500",
+                    "status": "UP"
+                }],
+                "url": "172.20.10.6:8101",
+                "status": "UP"
+            }],
+            "zoneName": "zone-1"
+        }],
+        "region": "临沂"
+    }, {
+        "zone": [{
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.1",
+                    "instanceId": "172.20.10.6:Server:8101",
+                    "client": [{
+                            "app": "CONSUMER",
+                            "hostName": "172.20.10.2",
+                            "instanceId": "172.20.10.6:consumer:8500",
+                            "flag": 0,
+                            "url": "172.20.10.6:8500",
+                            "status": "UP"
+                        },
+                        {
+                            "app": "SERVICE",
+                            "hostName": "172.20.10.3",
+                            "instanceId": "172.20.10.6:service:8201",
+                            "flag": 0,
+                            "url": "172.20.10.6:8201",
+                            "status": "UP"
+                        }
+                    ],
+                    "url": "172.20.10.6:8101",
+                    "status": "UP"
+                }],
+                "zoneName": "zone-1"
+            },
+            {
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.4",
+                    "instanceId": "172.20.10.6:Server:8102",
+                    "client": [{
+                        "app": "SERVICE",
+                        "hostName": "172.20.10.5",
+                        "instanceId": "172.20.10.6:service:8202",
+                        "flag": 0,
+                        "url": "172.20.10.6:8202",
+                        "status": "UP"
+                    }],
+                    "url": "172.20.10.6:8102",
+                    "status": "UP"
+                }],
+                "zoneName": "zone-2"
+            }
+        ],
+        "region": "上海"
+    }, {
+        "zone": [{
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.1",
+                    "instanceId": "172.20.10.6:Server:8101",
+                    "client": [{
+                            "app": "CONSUMER",
+                            "hostName": "172.20.10.2",
+                            "instanceId": "172.20.10.6:consumer:8500",
+                            "flag": 0,
+                            "url": "172.20.10.6:8500",
+                            "status": "UP"
+                        },
+                        {
+                            "app": "SERVICE",
+                            "hostName": "172.20.10.3",
+                            "instanceId": "172.20.10.6:service:8201",
+                            "flag": 0,
+                            "url": "172.20.10.6:8201",
+                            "status": "UP"
+                        }
+                    ],
+                    "url": "172.20.10.6:8101",
+                    "status": "UP"
+                }],
+                "zoneName": "zone-1"
+            },
+            {
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.4",
+                    "instanceId": "172.20.10.6:Server:8102",
+                    "client": [{
+                        "app": "SERVICE",
+                        "hostName": "172.20.10.5",
+                        "instanceId": "172.20.10.6:service:8202",
+                        "flag": 0,
+                        "url": "172.20.10.6:8202",
+                        "status": "UP"
+                    }],
+                    "url": "172.20.10.6:8102",
+                    "status": "UP"
+                }],
+                "zoneName": "zone-2"
+            }
+        ],
+        "region": "天津"
+    }, {
+        "zone": [{
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.1",
+                    "instanceId": "172.20.10.6:Server:8101",
+                    "client": [{
+                            "app": "CONSUMER",
+                            "hostName": "172.20.10.2",
+                            "instanceId": "172.20.10.6:consumer:8500",
+                            "flag": 0,
+                            "url": "172.20.10.6:8500",
+                            "status": "UP"
+                        },
+                        {
+                            "app": "SERVICE",
+                            "hostName": "172.20.10.3",
+                            "instanceId": "172.20.10.6:service:8201",
+                            "flag": 0,
+                            "url": "172.20.10.6:8201",
+                            "status": "UP"
+                        }
+                    ],
+                    "url": "172.20.10.6:8101",
+                    "status": "UP"
+                }],
+                "zoneName": "zone-1"
+            },
+            {
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.4",
+                    "instanceId": "172.20.10.6:Server:8102",
+                    "client": [{
+                        "app": "SERVICE",
+                        "hostName": "172.20.10.5",
+                        "instanceId": "172.20.10.6:service:8202",
+                        "flag": 0,
+                        "url": "172.20.10.6:8202",
+                        "status": "UP"
+                    }],
+                    "url": "172.20.10.6:8102",
+                    "status": "UP"
+                }],
+                "zoneName": "zone-2"
+            }
+        ],
+        "region": "沂南"
+    }, {
+        "zone": [{
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.1",
+                    "instanceId": "172.20.10.6:Server:8101",
+                    "client": [],
+                    "url": "172.20.10.6:8101",
+                    "status": "UP"
+                }],
+                "zoneName": "河东一区"
+            },
+            {
+                "servers": [{
+                    "app": "SERVER",
+                    "hostName": "172.20.10.4",
+                    "instanceId": "172.20.10.6:Server:8102",
+                    "client": [{
+                        "app": "SERVICE",
+                        "hostName": "172.20.10.5",
+                        "instanceId": "172.20.10.6:service:8202",
+                        "flag": 0,
+                        "url": "172.20.10.6:8202",
+                        "status": "UP"
+                    }],
+                    "url": "172.20.10.6:8102",
+                    "status": "UP"
+                }],
+                "zoneName": "河东二区"
+            }
+        ],
+        "region": "河东"
+    }]
+}

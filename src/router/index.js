@@ -34,6 +34,10 @@ export default new Router({
             path: '/mijie-pro',
             name: 'mijiepro',
             component: resolve => (require(["@/views/MijiePro"], resolve))
+        }, {
+            path: '/server-tbl',
+            name: 'servertbl',
+            component: resolve => (require(["@/views/ServerTbl"], resolve))
         },
         {
             path: '/demo-chart',

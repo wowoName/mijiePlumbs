@@ -106,13 +106,18 @@ textarea {
     color: #333;
 }
 
-.el-aside {
+#work-container .el-aside {
     background-color: #D3DCE6;
     color: #333;
 }
 
+.el-aside {
+    background-color: rgb(84, 92, 100);
+    color: #333;
+}
+
 .el-main {
-    background-color: #E9EEF3;
+    // background-color: #E9EEF3;
     color: #333;
     padding: 0;
 }

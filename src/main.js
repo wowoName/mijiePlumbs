@@ -17,6 +17,9 @@ import './style/jsplumb-demo.scss';
 // jsplumb
 import 'jsplumb/dist/js/jsplumb.min.js';
 import 'jsplumb/css/jsplumbtoolkit-defaults.css';
+//vue-drag-resize
+import VueDragResize from 'vue-drag-resize';
+Vue.component('vue-drag-resize', VueDragResize);
 
 // html2canvas
 import html2canvas from 'html2canvas';

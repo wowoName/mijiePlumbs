@@ -1,7 +1,7 @@
 <template>
     <!-- type=className  -->
     <div class="chart-item" :class="type" :style="nodeStyle" :data-type="type" :data-datas="JSON.stringify(data)" :id="id" @dblclick="handleNodeDbclick">
-        {{text}}
+        {{hostName}}
     </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
             type: String,
             required: true
         },
-        text: {
+        hostName: {
             type: String,
             required: true
         },
