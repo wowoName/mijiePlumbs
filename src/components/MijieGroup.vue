@@ -4,18 +4,17 @@
         <div class="ep">
         </div>
         <div class="content">
-            <!-- 渲染分区下的主机 -->
-            <template v-for="item in children">
-                <div v-if="item.type=='line'" :key="item.id">这是一条线</div>
-                <mijie-node v-else v-bind="item" :key="item.id"></mijie-node>
-            </template>
+
         </div>
         <!-- 去除缩放 -->
         <!-- <div class="resize top" @mousedown.stop="resize($event, 'top')"></div>
         <div class="resize left" @mousedown.stop="resize($event, 'left')"></div>
         <div class="resize bottom" @mousedown.stop="resize($event, 'bottom')"></div>
         <div class="resize right" @mousedown.stop="resize($event, 'right')"></div> -->
-
+        <!-- 渲染分区下的主机 -->
+        <template v-for="item in children">
+            <mijie-node v-bind="item" :key="item.id"></mijie-node>
+        </template>
     </div>
 </template>
 <script>
@@ -156,6 +155,7 @@ export default {
     // min-height: 250px;
     border-radius: 6px;
     margin-bottom: 20px;
+    box-shadow: 0px 0px 9px #828282bf;
 
     .title {
         position: absolute;

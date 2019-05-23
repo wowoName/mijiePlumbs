@@ -105,7 +105,7 @@ export default {
             }, rules: {
                 url: [
                     { required: true, message: '请输入服务地址', trigger: 'blur' },
-                    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                    // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                 ],
                 app: [
                     { required: true, message: '请输入server名', trigger: 'blur' }
@@ -118,7 +118,10 @@ export default {
                 ]
 
             },
-            chartData: [],
+            chartData: {
+                nodes: [],
+                connections: []
+            },
             templateList: [
                 {
                     name: "测试模板",
@@ -138,10 +141,10 @@ export default {
                     name: "交换机",
                     type: "switches"
                 },
-                // {
-                //     name: "组",
-                //     type: "groups"
-                // }
+                {
+                    name: "组",
+                    type: "groups"
+                }
             ],
             jsp: null,
             jsplulmb: null,
@@ -260,6 +263,9 @@ export default {
             }
         };
     },
+    created() {
+
+    },
     mounted() {
         const that = this;
         jsPlumb.ready(function () {
@@ -282,8 +288,8 @@ export default {
                         {
                             location: 1,
                             visible: true,
-                            width: 11,
-                            height: 11,
+                            width: 8,
+                            height: 10,
                             id: "Arrow"
                         }
                     ],
@@ -373,11 +379,25 @@ export default {
                                 top: ui.position.top + "px",
                                 left: ui.position.left - 200 + "px"
                             },
-                            data: {}
+                            data: {
+                                "app": "SERVER",
+                                "hostName": "172.20.10.1",
+                                "instanceId": "172.20.10.6:Server:8101",
+                                "client": [],
+                                "url": "172.20.10.6:8101",
+                                "status": "UP"
+                            },
+                            hostName: helper.html()
                         };
+                    //给组添加属性
+                    if (item.type === "groups") {
+                        item.nodeStyle.width = "200px";
+                        item.nodeStyle.height = "200px";
+                        item.name = "组";
+                    }
 
                     //将数据存储
-                    that.chartData.push(item);
+                    that.chartData.nodes.push(item);
                     //添加修改组件名称
                     that.$nextTick(() => {
                         //添加组
@@ -459,6 +479,7 @@ export default {
             };
             let clientSource = ["BottomCenter", "TopCenter"],
                 clientTarget = ["LeftMiddle", "RightMiddle"];
+
             //清空
             this.jsp.empty("workplace");
             if (key) {
@@ -469,7 +490,8 @@ export default {
                 // curData.isActive = true;
                 // this.$set(this.templateList, index, curData);
                 //加载对应的模板
-                let url = "/static/json/" + key + ".json";
+                let url = "/static/json/" + key + ".json",
+                    loading = this.loadingData();
                 this.$axios.get(url).then(resp => {
                     let data = resp.data.data,
                         nodes = [],
@@ -479,7 +501,7 @@ export default {
                     data.forEach((v, i) => {
                         //获取组元素
                         let groups = {
-                            "id": "groups_" + amount,
+                            "id": "groups_" + this.generateUUID(),//生成唯一的groupID 解决清空之后id依然存在的问题
                             "nodeStyle": {
                             },
                             "type": "groups",
@@ -490,7 +512,6 @@ export default {
                         let nodesChildren = [];
                         //获取组内的元素
                         v.zone.forEach(item => {
-
                             //获取server
                             item.servers.forEach(itemSer => {
                                 let curId = "computer_" + amount,
@@ -505,7 +526,7 @@ export default {
                                             url: itemSer.url,
                                             app: itemSer.app,
                                             instancId: itemSer.instanceId,
-                                            hostName: itemSer.hostName,
+                                            hostName: itemSer.hostName + "(" + item.zoneName + ")",
                                             status: itemSer.status
                                         }
                                     });
@@ -570,6 +591,15 @@ export default {
                                 }
                             }
                         });
+                        //连接元素
+                        this.chartData.connections.forEach(item => {
+                            this.jsp.connect({
+                                source: item.sourceId,
+                                target: item.targetId,
+                                //连接到哪一个点 的什么位置
+                                uuids: item.uuids// 添加连接处使用
+                            });
+                        });
                         //将元素添加到组（避免初次渲染完毕 拖动元素拖动到组外）
                         this.$nextTick(() => {
                             this.chartData.nodes.forEach(item => {
@@ -580,20 +610,21 @@ export default {
                                     })
                                 }
                             });
+                            //关闭加载状态
+                            this.$nextTick(() => {
+                                setTimeout(() => {
+                                    loading.close();
+                                }, 1000);
+                            })
                         })
-                        //连接元素
-                        this.chartData.connections.forEach(item => {
-                            this.jsp.connect({
-                                source: item.sourceId,
-                                target: item.targetId,
-                                //连接到哪一个点 的什么位置
-                                uuids: item.uuids// 添加连接处使用
-                            });
-                        });
+
+
+
                     });
 
                 }).catch(err => {
                     console.log(err);
+                    loading.close();
                 });
             }
         },
@@ -665,6 +696,7 @@ export default {
         renderNodes() {
 
         },
+        //缩放界面
         zoom(scale) {
             $("#workplace").css({
                 "-webkit-transform": `scale(${scale})`,
@@ -793,7 +825,10 @@ export default {
         //清空数据
         clearFlowchart() {
             this.jsp.empty("workplace");
-            this.chartData = [];
+            this.chartData = {
+                nodes: [],
+                connections: []
+            };
         },
         // 初始化node节点
         initNode(el) {
@@ -839,6 +874,7 @@ export default {
                 orphan: false
             });
         },
+        //动态设置连接线的样式
         getPointStyle(type) {
             let styles = {
                 endpoint: "Dot",
@@ -846,7 +882,20 @@ export default {
                 //  isSource: true,
                 //scope: "blue",
                 connector: [
-                    "Flowchart"
+                    "Flowchart",
+                    {
+                        stub: [30, false, 1000, 0, 0],//线段拐点高度
+                        gap: 0,//连线端点距离元素距离
+                        cornerRadius: 5,//折线处弧度
+                        alwaysRespectStubs: true,
+                        dashstyle: "2 2"
+                    }
+
+                    //"Straight"//直线
+
+                    //["Bezier", { curviness: 63 }],
+
+                    //"StateMachine"
                 ],
                 maxConnections: 3,//每个端点最多连接的数量
                 onMaxConnections(params, originalEvent) {//当连接数超过的回调
@@ -862,7 +911,7 @@ export default {
                 // isTarget: true,
                 beforeDrop: function (params) {
                     //当连接是进行判断
-                    console.log(params);
+                    console.log("是这里的吧");
                     return true
                     // return confirm(
                     //     "Connect " + params.sourceId + " to " + params.targetId + "?"
@@ -923,6 +972,28 @@ export default {
                 this.jsp.repaintEverything();
             });
         },
+        //生成唯一标识符
+        generateUUID() {
+            var d = new Date().getTime();
+            if (window.performance && typeof window.performance.now === "function") {
+                d += performance.now(); //use high-precision timer if available
+            }
+            var uuid = 'xxxxxxxxLxxxxL4xxxLyxxxLxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (d + Math.random() * 16) % 16 | 0;
+                d = Math.floor(d / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            return uuid;
+        },
+        //请求加载状态
+        loadingData() {
+            return this.$loading({
+                lock: true,
+                text: '加载中...',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
+        }
     }
 };
 </script>
